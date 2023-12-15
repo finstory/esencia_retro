@@ -1,0 +1,315 @@
+@import "./normalize.css";
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    background: #1A1423;
+
+}
+
+#root {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.retrospective {
+    width: 100%;
+    height: 100%;
+    max-width: 90rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    color: #f0f0f0;
+    background: #372549;
+    /* border: 2px solid #f0f0f0; */
+}
+
+.retrospective .retro {
+    position: relative;
+    width: 90%;
+    max-width: 110rem;
+    /* min-height: 60rem; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+    padding: 1rem;
+    color: #f0f0f0;
+    background: #372549;
+}
+
+.retro .new_tag_container {
+    z-index: 4;
+    position: absolute;
+    width: 100%;
+    max-width: 70rem;
+    height: 100%;
+    background-color: #00000041;
+    color: #000000;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    transition: all 0.3s ease-in-out;
+
+}
+
+.retro .new_tag {
+    position: fixed;
+    margin-top: 10rem;
+    height: 35rem;
+    width: 100%;
+    max-width: 30rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem;
+
+    background: linear-gradient(180deg, #ebda9ec7 0%, #e4b77dc3 100%);
+    color: #000000;
+    border-radius: 0 0 4rem 0;
+    font-size: 2rem;
+    transition: all 0.3s ease-in-out;
+
+}
+
+
+.retro .new_tag .btn_group {
+    position: absolute;
+    bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.retro .new_tag .save_btn {
+
+    bottom: 2rem;
+    background-color: #f7ca57d7;
+    /* border: 2px solid #363636; */
+    border-radius: 1rem 0;
+    border: 0;
+    font-size: 1.9rem;
+    padding: 0.6rem 2rem;
+    cursor: pointer;
+}
+
+.retro .new_tag .close_btn {
+
+
+    background-color: #d9d9d9cf;
+}
+
+.retro .new_tag .input_container {
+    width: 100%;
+    height: 70%;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background-color: #f1ce73e1;
+    /* border: 2px solid #363636; */
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.retro .new_tag .input_container textarea {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    border: 0;
+    background-color: transparent;
+}
+
+
+.retro .new_tag .input_container textarea:focus {
+    outline: none;
+
+}
+
+textarea::-webkit-scrollbar {
+    width: 12px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    z-index: 6;
+    cursor: pointer;
+    background-color: #282828;
+    border-radius: 6px;
+}
+
+textarea::-webkit-scrollbar-track {
+    background-color: #00000000;
+    /* Color del track (la parte fija del scrollbar) */
+}
+
+.retro .question {
+    position: relative;
+    aspect-ratio: 1;
+    height: 28rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 2rem;
+    border-radius: 1rem;
+    gap: 2.5rem;
+    color: #f0f0f0;
+    background: #D9D9D9;
+    box-shadow: 2rem 2rem 0.5rem #26103480;
+
+    /* border: 2px solid #f0f0f0; */
+}
+
+
+.retro .question .title {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 2rem;
+    color: #000000;
+    animation: fade-in 0.5s ease-in-out;
+}
+
+.retro .question .title p {
+    padding: 2rem;
+    letter-spacing: 1px;
+    line-height: 4rem;
+    animation: blink 2s infinite;
+}
+
+/* cuando hay tags */
+
+.retro .question .title_down {
+    width: 100%;
+    position: absolute;
+    bottom: -1rem;
+    display: flex;
+    padding-left: 6rem;
+    font-size: 1.2rem;
+    color: #000000;
+    animation: fade-in 0.5s ease-in-out;
+}
+
+.retro .question .title_down p {
+    padding: 1rem;
+    letter-spacing: 1px;
+    line-height: 1rem;
+    animation: blink 2s infinite;
+}
+
+
+.retro .question .add_btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 3rem;
+    height: 3rem;
+    background-color: #f7c957;
+    border-radius: 1rem 0 1rem 0;
+    color: #000000;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.retro .question .add_btn_disabled {
+    cursor: not-allowed;
+    background-color: #f75757a1;
+}
+
+.retro .question .tags {
+    z-index: 2;
+    position: relative;
+    width: 10rem;
+    height: 10rem;
+    padding: 1rem;
+    border-radius: 0 0 1rem 0;
+    background: linear-gradient(180deg, #FDFFAD 0%, #ffe4ad 100%);
+    box-shadow: 1rem 1rem 0.5rem #342d1033;
+    color: #000000;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.retro .question .tags .delete_btn {
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 0 1rem 0 0;
+    border: 0;
+
+    background-color: #f75757a1;
+    color: #000000;
+
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+}
+
+.retro .question .tags .edit_btn {
+    position: absolute;
+    bottom: 0%;
+    right: 0%;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 1rem 0 0 0;
+    border: 0;
+
+    background-color: #f78757a1;
+    color: #000000;
+
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+}
+
+
+/** animations */
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
