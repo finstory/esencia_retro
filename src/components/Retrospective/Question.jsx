@@ -2,7 +2,13 @@ import React from "react";
 import { Tags } from "./Tags";
 import { useHomeServices } from "../../services/useHomeServices";
 
-export const Question = ({ title, tagsList = [], sendTag, setModal }) => {
+export const Question = ({
+  title,
+  tagsList = [],
+  sendTag,
+  setModal,
+  team_id,
+}) => {
   const { setTagModal } = useHomeServices();
 
   const handleAddTag = () => {
@@ -17,7 +23,9 @@ export const Question = ({ title, tagsList = [], sendTag, setModal }) => {
       {tagsList &&
         tagsList.length > 0 &&
         tagsList.map((t, i) => {
-          return <Tags key={i} {...t} questionTitle={title} />;
+          return (
+            <Tags key={i} {...t} questionTitle={title} team_id={team_id} />
+          );
         })}
 
       <div

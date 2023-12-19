@@ -17,13 +17,13 @@ export const Retrospective = () => {
   const socket = io("https://9qhvw5j9-3000.brs.devtunnels.ms");
   const team_id = searchParams.get("team_id");
   const access = searchParams.get("access");
-console.log(team_id)
+  console.log(team_id);
   const [completeRetro, setCompleteRetro] = useState(false);
 
   useEffect(() => {
-    socket.on("end", (complete) => {
+    socket.on("end", ({ complete, teamId }) => {
       console.log(complete);
-      complete && setCompleteRetro(true);
+      complete && team_id === teamId && setCompleteRetro(true);
     });
   }, []);
 
@@ -54,7 +54,7 @@ console.log(team_id)
               </p>
             </>
           )}
-          <Retro />
+          <Retro team_id={team_id} />
         </div>
       ) : (
         <Complete />

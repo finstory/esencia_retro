@@ -6,7 +6,7 @@ import { NewTag } from "./NewTag";
 
 const socket = io("https://9qhvw5j9-3000.brs.devtunnels.ms");
 
-export const Retro = () => {
+export const Retro = ({ team_id }) => {
   const [note, setNote] = useState("asdasd asd");
 
   const [modal, setModal] = useState(false);
@@ -17,10 +17,10 @@ export const Retro = () => {
   } = useHomeServices();
 
   useEffect(() => {
-    socket.on("load_retro", (retro) => {
-      setRetroList(retro);
+    socket.on("load_retro", ({ retro, teamId }) => {
+      if (teamId === team_id) setRetroList(retro);
     });
-    socket.emit("initial");
+    socket.emit("initial", team_id);
   }, []);
 
   const sendTag = () => {
@@ -42,11 +42,17 @@ export const Retro = () => {
         retroList.length > 0 &&
         retroList.map((q, i) => {
           return (
-            <Question key={i} {...q} sendTag={sendTag} setModal={setModal} />
+            <Question
+              key={i}
+              {...q}
+              sendTag={sendTag}
+              setModal={setModal}
+              team_id={team_id}
+            />
           );
         })}
 
-      {tags_modal.active && <NewTag />}
+      {tags_modal.active && <NewTag team_id={team_id} />}
     </div>
   );
 };

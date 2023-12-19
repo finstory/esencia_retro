@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import io from "socket.io-client";
 import { useHomeServices } from "../../services/useHomeServices";
 import { useForm } from "../../hooks/useForm";
 import { v4 as uuidv4 } from "uuid";
 
+import io from "socket.io-client";
 const socket = io("https://9qhvw5j9-3000.brs.devtunnels.ms");
-export const NewTag = () => {
+export const NewTag = ({ team_id }) => {
   const textareaRef = useRef(null);
   const { values, handleInputChange } = useForm({ note: "" });
 
@@ -19,21 +19,23 @@ export const NewTag = () => {
       setTagModal("");
       if (tags_modal.id.length > 0)
         socket.emit("edit_tag", {
+          teamId: team_id,
           title: tags_modal.title,
           tag: {
             id: tags_modal.id,
             note: values.note,
-            thumb_down: 2,
-            thumb_up: 0,
+            // thumb_down: 2,
+            // thumb_up: 0,
           },
         });
       else
         socket.emit("test", {
+          teamId: team_id,
           title: tags_modal.title,
           tag: {
             id: uuidv4(),
             note: values.note,
-            thumb_down: 2,
+            thumb_down: 0,
             thumb_up: 0,
           },
         });
@@ -54,7 +56,6 @@ export const NewTag = () => {
     }
   }, []);
 
-  console.log("sdaasdf");
   return (
     <div className="new_tag_container">
       <div className="new_tag">
