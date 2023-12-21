@@ -4,8 +4,9 @@ import { useForm } from "../../hooks/useForm";
 import { v4 as uuidv4 } from "uuid";
 
 import io from "socket.io-client";
-const socket = io("https://9qhvw5j9-3000.brs.devtunnels.ms");
+import { baseUrl } from "../../helpers/baseUrl";
 export const NewTag = ({ team_id }) => {
+  const socket = io(baseUrl);
   const textareaRef = useRef(null);
   const { values, handleInputChange } = useForm({ note: "" });
 

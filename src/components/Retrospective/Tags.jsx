@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import io from "socket.io-client";
 import { useHomeServices } from "../../services/useHomeServices";
+import { baseUrl } from "../../helpers/baseUrl";
 
 export const Tags = ({
   team_id,
@@ -10,7 +11,7 @@ export const Tags = ({
   thumb_up = 0,
   questionTitle,
 }) => {
-  const socket = io("https://9qhvw5j9-3000.brs.devtunnels.ms");
+  const socket = io(baseUrl);
   const { editTag } = useHomeServices();
 
   const [like, setLike] = useState(0);

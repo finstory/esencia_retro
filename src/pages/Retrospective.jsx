@@ -6,6 +6,7 @@ import { Complete } from "./Complete";
 import { useHomeServices } from "../services/useHomeServices";
 
 import io from "socket.io-client";
+import { baseUrl } from "../helpers/baseUrl";
 
 export const Retrospective = () => {
   const location = useLocation();
@@ -14,7 +15,7 @@ export const Retrospective = () => {
     home: { complete },
   } = useHomeServices();
 
-  const socket = io("https://9qhvw5j9-3000.brs.devtunnels.ms");
+  const socket = io(baseUrl);
   const team_id = searchParams.get("team_id");
   const access = searchParams.get("access");
   console.log(team_id);

@@ -3,10 +3,12 @@ import { Question } from "./Question";
 import io from "socket.io-client";
 import { useHomeServices } from "../../services/useHomeServices";
 import { NewTag } from "./NewTag";
+import { baseUrl } from "../../helpers/baseUrl";
 
-const socket = io("https://9qhvw5j9-3000.brs.devtunnels.ms");
+
 
 export const Retro = ({ team_id }) => {
+  const socket = io(baseUrl);
   const [note, setNote] = useState("asdasd asd");
 
   const [modal, setModal] = useState(false);
